@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include <SFML/Graphics.hpp>
 #include "ball.h"
+#include "paddle.h"
 #include <cmath>
 
 using namespace sf;
@@ -13,8 +14,8 @@ int width;
 int height;
 
 Ball* ball;
-RectangleShape* leftPaddle;
-RectangleShape* rightPaddle;
+Paddle* leftPaddle;
+Paddle* rightPaddle;
 
 
 void move(Transformable& transformable, float x, float y) {
@@ -22,7 +23,7 @@ void move(Transformable& transformable, float x, float y) {
 	transformable.setPosition(pos.x + x, pos.y + y);
 }
 
-void clampPaddle(RectangleShape* paddle)
+void clampPaddle(Paddle* paddle)
 {
 	Vector2f pos = paddle->getPosition();
 	Vector2f size = paddle->getSize();
@@ -41,18 +42,21 @@ void clampPaddle(RectangleShape* paddle)
 
 void updatePaddles(Time elapsed)
 {
+	leftPaddle->update(elapsed); 
+	rightPaddle->update(elapsed); 
+
 	if (Keyboard::isKeyPressed(Keyboard::W)) {
-		leftPaddle->move(0, -PADDLE_SPEED * elapsed.asSeconds());
+		leftPaddle->moveUp(elapsed);
 	}
 	else if (Keyboard::isKeyPressed(Keyboard::S)) {
-		leftPaddle->move(0, PADDLE_SPEED * elapsed.asSeconds());
+		leftPaddle->moveDown(elapsed);
 	}
 
 	if (Keyboard::isKeyPressed(Keyboard::Up)) {
-		rightPaddle->move(0, -PADDLE_SPEED * elapsed.asSeconds());
+		rightPaddle->moveUp(elapsed);
 	}
 	else if (Keyboard::isKeyPressed(Keyboard::Down)) {
-		rightPaddle->move(0, PADDLE_SPEED * elapsed.asSeconds());
+		rightPaddle->moveDown(elapsed);
 	}
 
 	clampPaddle(leftPaddle);
@@ -106,13 +110,11 @@ int main()
 	ball->setPosition(width / 2 - ball->getRadius(), height / 2 - ball->getRadius());
 	ball->setVelocity(70, 70);
 
-	leftPaddle = new RectangleShape(Vector2f(15, 50));
+	leftPaddle = new Paddle(); 
 	leftPaddle->setPosition(PADDLE_OFFSET, height / 2 - leftPaddle->getSize().y / 2);
-	leftPaddle->setFillColor(Color::White);
 
-	rightPaddle = new RectangleShape(Vector2f(15, 50));
+	rightPaddle = new Paddle(); 
 	rightPaddle->setPosition(width - PADDLE_OFFSET - rightPaddle->getSize().x, height / 2 - rightPaddle->getSize().y / 2);
-	rightPaddle->setFillColor(Color::White);
 
 	Clock clock;
 
@@ -127,6 +129,15 @@ int main()
 
 		Time elapsed = clock.getElapsedTime();
 		clock.restart();
+
+		if (Keyboard::isKeyPressed(Keyboard::Space)) 
+		{
+			leftPaddle->setHeight(100, 4); 
+		}
+		if (Keyboard::isKeyPressed(Keyboard::BackSpace))
+		{
+			rightPaddle->setHeight(100, 4); 
+		}
 
 		updatePaddles(elapsed);
 		updateBall(elapsed);
