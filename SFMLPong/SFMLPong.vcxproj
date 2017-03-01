@@ -152,13 +152,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ball.h" />
+    <ClInclude Include="game.h" />
+    <ClInclude Include="longPaddlePowerup.h" />
     <ClInclude Include="paddle.h" />
+    <ClInclude Include="powerup.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ball.cpp" />
+    <ClCompile Include="game.cpp" />
+    <ClCompile Include="longPaddlePowerup.cpp" />
     <ClCompile Include="paddle.cpp" />
+    <ClCompile Include="powerup.cpp" />
     <ClCompile Include="SFMLPong.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
