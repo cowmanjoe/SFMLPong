@@ -1,4 +1,5 @@
 #pragma once
+#include "stdafx.h"
 #include <SFML/Graphics.hpp>
 #include "powerup.h"
 #include "paddle.h"

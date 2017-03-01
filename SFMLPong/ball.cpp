@@ -1,5 +1,4 @@
 #pragma once
-#include "stdafx.h"
 #include "ball.h"
 
 using namespace sf;
@@ -30,5 +29,3 @@ void Ball::update(Time elapsed)
 	Vector2f pos = getPosition();
 	setPosition(pos.x + velocity.x * elapsed.asSeconds(), pos.y + velocity.y * elapsed.asSeconds());
 }
-
-

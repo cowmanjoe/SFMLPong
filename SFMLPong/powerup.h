@@ -1,4 +1,5 @@
 #pragma once
+#include "stdafx.h"
 #include <SFML/Graphics.hpp>
 
 class Powerup : public sf::Sprite

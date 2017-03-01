@@ -1,32 +1,45 @@
-#include "stdafx.h"
 #include "game.h"
 #include "longPaddlePowerup.h"
+#include "addBallPowerup.h"
+using namespace sf;
 
-using namespace sf; 
-
-
+bool newBallSpawned = false;
 
 Game::Game()
 {
-	gameLoop(); 
+	gameLoop();
 }
 
 void Game::addPowerup(Powerup* powerup)
 {
-	powerups.push_back(powerup); 
+	powerups.push_back(powerup);
+}
+
+void Game::addBall(Ball* ball) {
+  Ball* firstBall = balls.front();
+	Vector2f firstVel = firstBall->getVelocity();
+	ball->setVelocity(-firstVel.x, firstVel.y);
+  ball->setPosition(firstBall->getPosition());
+	balls.push_back(ball);
+}
+
+void Game::removeBall(Ball* ball) {
+	balls.erase(std::remove(balls.begin(), balls.end(), ball), balls.end());
 }
 
 void Game::gameLoop()
 {
-	RenderWindow window(VideoMode(640, 640), "SFML works!");
+	window = new RenderWindow(VideoMode(640, 640), "SFML works!");
 
-	width = window.getSize().x;
-	height = window.getSize().y;
+	width = window->getSize().x;
+	height = window->getSize().y;
 
 
-	ball = new Ball();
+	Ball* ball = new Ball();
 	ball->setPosition(width / 2 - ball->getRadius(), height / 2 - ball->getRadius());
 	ball->setVelocity(70, 70);
+
+	balls.push_back(ball);
 
 	leftPaddle = new Paddle();
 	leftPaddle->setPosition(PADDLE_OFFSET, height / 2 - leftPaddle->getSize().y / 2);
@@ -36,13 +49,13 @@ void Game::gameLoop()
 
 	Clock clock;
 
-	while (window.isOpen())
+	while (window->isOpen())
 	{
 		Event event;
-		while (window.pollEvent(event))
+		while (window->pollEvent(event))
 		{
 			if (event.type == Event::Closed)
-				window.close();
+				window->close();
 		}
 
 		Time elapsed = clock.getElapsedTime();
@@ -50,9 +63,9 @@ void Game::gameLoop()
 
 		if (Keyboard::isKeyPressed(Keyboard::Space))
 		{
-			LongPaddlePowerup* powerup = new LongPaddlePowerup(leftPaddle); 
-			addPowerup(powerup); 
-			powerup->activate(); 
+			LongPaddlePowerup* powerup = new LongPaddlePowerup(leftPaddle);
+			addPowerup(powerup);
+			powerup->activate();
 		}
 		if (Keyboard::isKeyPressed(Keyboard::BackSpace))
 		{
@@ -61,21 +74,33 @@ void Game::gameLoop()
 			powerup->activate();
 		}
 
-		updatePaddles(elapsed);
-		updateBall(elapsed);
+    if (!newBallSpawned && Keyboard::isKeyPressed(Keyboard::N))
+    {
+      AddBallPowerup* powerup = new AddBallPowerup(this);
+      addPowerup(powerup);
+      powerup->activate();
+      newBallSpawned = true;
+    }
+
+    updatePaddles(elapsed);
+		updateBalls(elapsed);
 		updatePowerups(elapsed);
 
-		if (ball->getPosition().x < 0 || ball->getPosition().x > width - ball->getRadius() * 2)
-		{
-			window.close();
-		}
+		draw(); 
+  }
 
-		window.clear();
-		window.draw(*ball);
-		window.draw(*leftPaddle);
-		window.draw(*rightPaddle);
-		window.display();
+}
+
+void Game::draw() {
+	window->clear();
+
+	for (auto it = balls.begin(); it != balls.end(); it++) {
+		window->draw(**it);
 	}
+	window->draw(*leftPaddle);
+	window->draw(*rightPaddle);
+	window->display();
+
 }
 
 void Game::clampPaddle(Paddle* paddle)
@@ -118,53 +143,61 @@ void Game::updatePaddles(Time elapsed)
 	clampPaddle(rightPaddle);
 }
 
-void Game::updateBall(Time elapsed)
+void Game::updateBalls(Time elapsed)
 {
-	ball->update(elapsed);
-	Vector2f pos = ball->getPosition();
-	Vector2f vel = ball->getVelocity();
+	for (auto it = balls.begin(); it != balls.end(); it++) {
+    Ball* ball = *it;
 
-	float radius = ball->getRadius();
+		ball->update(elapsed);
+		Vector2f pos = ball->getPosition();
+		Vector2f vel = ball->getVelocity();
 
-	if (pos.y <= 0 || pos.y >= height - radius * 2)
-	{
-		ball->setVelocity(vel.x, -vel.y);
-	}
+		float radius = ball->getRadius();
 
-	Vector2f leftPos = leftPaddle->getPosition();
-	Vector2f rightPos = rightPaddle->getPosition();
+		if (pos.y <= 0 || pos.y >= height - radius * 2)
+		{
+			ball->setVelocity(vel.x, -vel.y);
+		}
 
-	Vector2f leftSize = leftPaddle->getSize();
-	Vector2f rightSize = rightPaddle->getSize();
+		Vector2f leftPos = leftPaddle->getPosition();
+		Vector2f rightPos = rightPaddle->getPosition();
 
-	if (pos.x <= leftPos.x + leftSize.x &&
-		pos.x >= leftPos.x &&
-		pos.y + radius * 2 >= leftPos.y &&
-		pos.y <= leftPos.y + leftSize.y) {
-		ball->setVelocity(abs(vel.x), vel.y);
-	}
-	else if (pos.x + radius * 2 <= rightPos.x + leftSize.x &&
-		pos.x + radius * 2 >= rightPos.x &&
-		pos.y + radius * 2 >= rightPos.y &&
-		pos.y <= rightPos.y + rightSize.y) {
-		ball->setVelocity(-abs(vel.x), vel.y);
-	}
+		Vector2f leftSize = leftPaddle->getSize();
+		Vector2f rightSize = rightPaddle->getSize();
 
+		if (pos.x <= leftPos.x + leftSize.x &&
+			pos.x >= leftPos.x &&
+			pos.y + radius * 2 >= leftPos.y &&
+			pos.y <= leftPos.y + leftSize.y) {
+			ball->setVelocity(abs(vel.x), vel.y);
+		}
+		else if (pos.x + radius * 2 <= rightPos.x + leftSize.x &&
+			pos.x + radius * 2 >= rightPos.x &&
+			pos.y + radius * 2 >= rightPos.y &&
+			pos.y <= rightPos.y + rightSize.y) {
+			ball->setVelocity(-abs(vel.x), vel.y);
+		}
+
+		if (pos.x < 0 || pos.x > width - radius * 2)
+		{
+			window->close();
+		}
+  }
 }
 
 bool isFinished(Powerup* powerup)
 {
-	return powerup->finished; 
+	return powerup->finished;
 }
 
 void Game::updatePowerups(Time elapsed)
 {
-	powerups.erase(std::remove_if(powerups.begin(), powerups.end(), isFinished), powerups.end()); 
+	powerups.erase(std::remove_if(powerups.begin(), powerups.end(), isFinished), powerups.end());
 
 	for (auto it = powerups.begin(); it != powerups.end(); it++)
 	{
 		Powerup* p = *it;
 		p->update(elapsed);
-		
+
 	}
 }
