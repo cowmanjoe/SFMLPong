@@ -39,6 +39,9 @@
     <ClInclude Include="longPaddlePowerup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="addBallPowerup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -60,6 +63,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="longPaddlePowerup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="addBallPowerup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

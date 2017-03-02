@@ -151,6 +151,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="addBallPowerup.h" />
     <ClInclude Include="ball.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="longPaddlePowerup.h" />
@@ -160,6 +161,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="addBallPowerup.cpp" />
     <ClCompile Include="ball.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="longPaddlePowerup.cpp" />

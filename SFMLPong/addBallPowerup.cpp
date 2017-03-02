@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "addBallPowerup.h"
 
 AddBallPowerup::AddBallPowerup(Game* game)

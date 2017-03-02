@@ -1,6 +1,5 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "stdafx.h"
 #include "paddle.h"
 #include "ball.h"
 #include "powerup.h"

@@ -1,6 +1,8 @@
+#include "stdafx.h"
 #include "game.h"
 #include "longPaddlePowerup.h"
 #include "addBallPowerup.h"
+
 using namespace sf;
 
 bool newBallSpawned = false;

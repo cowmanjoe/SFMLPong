@@ -1,4 +1,5 @@
 #pragma once
+#include "stdafx.h"
 #include "ball.h"
 
 using namespace sf;
