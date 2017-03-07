@@ -14,7 +14,7 @@ public:
 	void removeBall(Ball* ball);
 private:
 	const int PADDLE_OFFSET = 20;
-	const float PADDLE_SPEED = 200;
+	const float PADDLE_SPEED = 300;
 
 	sf::RenderWindow* window;
 	int width;

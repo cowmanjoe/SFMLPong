@@ -39,7 +39,7 @@ void Game::gameLoop()
 
 	Ball* ball = new Ball();
 	ball->setPosition(width / 2 - ball->getRadius(), height / 2 - ball->getRadius());
-	ball->setVelocity(70, 70);
+	ball->setVelocity(120, 120);
 
 	balls.push_back(ball);
 
@@ -65,15 +65,15 @@ void Game::gameLoop()
 
 		if (Keyboard::isKeyPressed(Keyboard::Space))
 		{
-			LongPaddlePowerup* powerup = new LongPaddlePowerup(leftPaddle);
+			AddBallPowerup* powerup = new AddBallPowerup(this);
+			powerup->setPosition(300, 300); 
 			addPowerup(powerup);
-			powerup->activate();
 		}
 		if (Keyboard::isKeyPressed(Keyboard::BackSpace))
 		{
-			LongPaddlePowerup* powerup = new LongPaddlePowerup(rightPaddle);
+			AddBallPowerup* powerup = new AddBallPowerup(this);
+			powerup->setPosition(400, 500); 
 			addPowerup(powerup);
-			powerup->activate();
 		}
 
     if (!newBallSpawned && Keyboard::isKeyPressed(Keyboard::N))
@@ -99,6 +99,12 @@ void Game::draw() {
 	for (auto it = balls.begin(); it != balls.end(); it++) {
 		window->draw(**it);
 	}
+
+	for (auto it = powerups.begin(); it != powerups.end(); it++)
+	{
+		window->draw(**it); 
+	}
+
 	window->draw(*leftPaddle);
 	window->draw(*rightPaddle);
 	window->display();
@@ -199,6 +205,43 @@ void Game::updatePowerups(Time elapsed)
 	for (auto it = powerups.begin(); it != powerups.end(); it++)
 	{
 		Powerup* p = *it;
+
+		Vector2f pos = p->getPosition();
+		Vector2f size = p->getSize();
+
+
+		for (auto bit = balls.begin(); bit != balls.end(); bit++)
+		{
+			Ball* b = *bit;
+			float bRad = b->getRadius();
+			Vector2f bCenterPos = b->getPosition() + Vector2f(bRad, bRad); 
+
+			float distX = abs(bCenterPos.x - pos.x - size.x / 2);
+			float distY = abs(bCenterPos.y - pos.y - size.y / 2); 
+
+			if (distX > (size.x / 2 + bRad)) 
+				continue; 
+			if (distY > (size.y / 2 + bRad)) 
+				continue; 
+
+			if (distX <= size.x / 2)
+			{
+				p->activate(); 
+				break;
+			}
+			if (distY <= size.y / 2) {
+				p->activate();
+				break; 
+			}
+			float dx = distX - size.x / 2; 
+			float dy = distY - size.y / 2; 
+			if (dx*dx + dy*dy <= (bRad*bRad))
+			{
+				p->activate(); 
+				break; 
+			}
+		}
+
 		p->update(elapsed);
 
 	}

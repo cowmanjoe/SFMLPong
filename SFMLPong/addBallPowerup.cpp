@@ -8,6 +8,10 @@ AddBallPowerup::AddBallPowerup(Game* game)
   activeTime = 5;
   timer = 0;
   activated = false;
+
+  sf::Texture* texture = new sf::Texture();
+  texture->loadFromFile("ball.png");
+  setTexture(*texture); 
 }
 
 void AddBallPowerup::activateEffects()

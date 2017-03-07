@@ -4,10 +4,12 @@
 class Powerup : public sf::Sprite
 {
 public:
-	// call this before activating the concrete powerup 
+	sf::Vector2f getSize(); 
+
+	// called before activating the concrete powerup 
 	void activate(); 
 
-	// call this after deactivating the effect (to delete)
+	// called after deactivating the effect (to delete)
 	virtual void deactivate(); 
 
 	virtual void update(sf::Time elapsed); 
