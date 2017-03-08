@@ -2,13 +2,18 @@
 #include "game.h"
 #include "longPaddlePowerup.h"
 #include "addBallPowerup.h"
+#include <iostream>
 
 using namespace sf;
 
 bool newBallSpawned = false;
 
+int Game::WINDOW_WIDTH; 
+int Game::WINDOW_HEIGHT;
+
 Game::Game()
 {
+	
 	gameLoop();
 }
 
@@ -33,21 +38,21 @@ void Game::gameLoop()
 {
 	window = new RenderWindow(VideoMode(640, 640), "SFML works!");
 
-	width = window->getSize().x;
-	height = window->getSize().y;
+	Game::WINDOW_WIDTH = window->getSize().x;
+	Game::WINDOW_HEIGHT = window->getSize().y;
 
 
 	Ball* ball = new Ball();
-	ball->setPosition(width / 2 - ball->getRadius(), height / 2 - ball->getRadius());
+	ball->setPosition(Game::WINDOW_WIDTH / 2 - ball->getRadius(), Game::WINDOW_HEIGHT / 2 - ball->getRadius());
 	ball->setVelocity(120, 120);
 
 	balls.push_back(ball);
 
 	leftPaddle = new Paddle();
-	leftPaddle->setPosition(PADDLE_OFFSET, height / 2 - leftPaddle->getSize().y / 2);
+	leftPaddle->setPosition(PADDLE_OFFSET, Game::WINDOW_HEIGHT / 2 - leftPaddle->getSize().y / 2);
 
 	rightPaddle = new Paddle();
-	rightPaddle->setPosition(width - PADDLE_OFFSET - rightPaddle->getSize().x, height / 2 - rightPaddle->getSize().y / 2);
+	rightPaddle->setPosition(Game::WINDOW_WIDTH - PADDLE_OFFSET - rightPaddle->getSize().x, Game::WINDOW_HEIGHT / 2 - rightPaddle->getSize().y / 2);
 
 	Clock clock;
 
@@ -111,28 +116,8 @@ void Game::draw() {
 
 }
 
-void Game::clampPaddle(Paddle* paddle)
-{
-	Vector2f pos = paddle->getPosition();
-	Vector2f size = paddle->getSize();
-	float y = pos.y;
-	if (pos.y < 0)
-	{
-		y = 0;
-	}
-	else if (pos.y > height - size.y)
-	{
-		y = height - size.y;
-	}
-
-	paddle->setPosition(pos.x, y);
-}
-
 void Game::updatePaddles(Time elapsed)
 {
-	leftPaddle->update(elapsed);
-	rightPaddle->update(elapsed);
-
 	if (Keyboard::isKeyPressed(Keyboard::W)) {
 		leftPaddle->moveUp(elapsed);
 	}
@@ -147,14 +132,21 @@ void Game::updatePaddles(Time elapsed)
 		rightPaddle->moveDown(elapsed);
 	}
 
-	clampPaddle(leftPaddle);
-	clampPaddle(rightPaddle);
+	leftPaddle->update(elapsed);
+	rightPaddle->update(elapsed);
+}
+
+float sqrtWithAny(float x) {
+	if (x < 0) {
+		return -sqrt(-x); 
+	}
+	return sqrt(x); 
 }
 
 void Game::updateBalls(Time elapsed)
 {
 	for (auto it = balls.begin(); it != balls.end(); it++) {
-    Ball* ball = *it;
+		Ball* ball = *it;
 
 		ball->update(elapsed);
 		Vector2f pos = ball->getPosition();
@@ -162,7 +154,7 @@ void Game::updateBalls(Time elapsed)
 
 		float radius = ball->getRadius();
 
-		if (pos.y <= 0 || pos.y >= height - radius * 2)
+		if (pos.y <= 0 || pos.y >= Game::WINDOW_HEIGHT - radius * 2)
 		{
 			ball->setVelocity(vel.x, -vel.y);
 		}
@@ -173,24 +165,25 @@ void Game::updateBalls(Time elapsed)
 		Vector2f leftSize = leftPaddle->getSize();
 		Vector2f rightSize = rightPaddle->getSize();
 
-		if (pos.x <= leftPos.x + leftSize.x &&
-			pos.x >= leftPos.x &&
-			pos.y + radius * 2 >= leftPos.y &&
-			pos.y <= leftPos.y + leftSize.y) {
-			ball->setVelocity(abs(vel.x), vel.y);
-		}
-		else if (pos.x + radius * 2 <= rightPos.x + leftSize.x &&
-			pos.x + radius * 2 >= rightPos.x &&
-			pos.y + radius * 2 >= rightPos.y &&
-			pos.y <= rightPos.y + rightSize.y) {
-			ball->setVelocity(-abs(vel.x), vel.y);
-		}
+		FloatRect ballRect = FloatRect(pos, Vector2f(radius * 2, radius * 2));
 
-		if (pos.x < 0 || pos.x > width - radius * 2)
+		if (leftPaddle->collidingRight(ballRect)) {
+			float offsetY = leftPaddle->getOffsetY(ballRect);
+			ball->setPosition(leftPos.x + leftSize.x, pos.y); 
+			ball->setVelocity(abs(vel.x), vel.y + abs(offsetY) * offsetY * Y_BOUNCE_FACTOR);
+		}
+		else if (rightPaddle->collidingLeft(ballRect)) {
+			float offsetY = rightPaddle->getOffsetY(ballRect);
+			ball->setPosition(rightPos.x - rightSize.x, pos.y); 
+			ball->setVelocity(-abs(vel.x), vel.y + abs(offsetY) * offsetY * Y_BOUNCE_FACTOR);
+		}
+		
+
+		if (pos.x < 0 || pos.x > Game::WINDOW_WIDTH - radius * 2)
 		{
 			window->close();
 		}
-  }
+    }
 }
 
 bool isFinished(Powerup* powerup)
