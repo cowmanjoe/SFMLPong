@@ -1,0 +1,7 @@
+/home/cowan/clion-2017.1/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/cowan/CLionProjects/SFMLPong
+-- Found SFML 2.3.2 in /usr/include
+SFML found!
+Graphics lib: /usr/lib/x86_64-linux-gnu/libsfml-graphics.so
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/cowan/CLionProjects/SFMLPong/cmake-build-debug
