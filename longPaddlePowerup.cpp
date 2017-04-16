@@ -1,6 +1,7 @@
+#include <iostream>
 #include "longPaddlePowerup.h"
 
-using namespace sf; 
+using namespace sf;
 
 LongPaddlePowerup::LongPaddlePowerup() {
 	activeTime = 5;
@@ -12,21 +13,24 @@ LongPaddlePowerup::LongPaddlePowerup() {
 }
 
 void LongPaddlePowerup::setPaddle(Paddle* paddle) {
+    std::cout << "Paddle set to " << paddle << "\n";
     this->paddle = paddle;
 }
 
 void LongPaddlePowerup::activateEffects()
 {
-	Vector2f size = paddle->getSize(); 
-	paddle->move(0, -(EXTENDED_HEIGHT - size.y) / 2); 
-	paddle->setSize(Vector2f(size.x, EXTENDED_HEIGHT));
+    std::cout << "----------------------------------\nLong paddle activated!\n----------------------------------\n";
+	Vector2f size = paddle->getSize();
+	paddle->move(0, -EXTENSION / 2);
+	paddle->setSize(Vector2f(size.x, size.y + EXTENSION));
 }
 
 void LongPaddlePowerup::deactivateEffects()
 {
-	sf::Vector2f size = paddle->getSize(); 
-	paddle->move(0, (size.y - DEFAULT_HEIGHT) / 2);
-	paddle->setSize(Vector2f(size.x, DEFAULT_HEIGHT)); 
+    std::cout << "----------------------------------\nLong paddle deactivated!\n----------------------------------\n";
+	sf::Vector2f size = paddle->getSize();
+	paddle->move(0, EXTENSION / 2);
+	paddle->setSize(Vector2f(size.x, size.y - EXTENSION));
 }
 
 PowerupType LongPaddlePowerup::getType() {

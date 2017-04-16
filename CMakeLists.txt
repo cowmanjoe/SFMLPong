@@ -5,7 +5,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.cpp addBallPowerup.cpp ball.cpp game.cpp longPaddlePowerup.cpp paddle.cpp powerup.cpp ChangeBallSpeedPowerup.cpp ChangeBallSpeedPowerup.h)
+set(SOURCE_FILES main.cpp addBallPowerup.cpp ball.cpp game.cpp longPaddlePowerup.cpp paddle.cpp powerup.cpp ChangeBallSpeedPowerup.cpp ChangeBallSpeedPowerup.h PowerupManager.cpp PowerupManager.h)
 add_executable(SFMLPong ${SOURCE_FILES})
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")

@@ -39,3 +39,7 @@ void Powerup::update(sf::Time elapsed)
 		}
 	}
 }
+
+bool Powerup::isActivated() {
+	return activated;
+}

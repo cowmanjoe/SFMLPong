@@ -15,6 +15,5 @@ protected:
 	void deactivateEffects(); 
 private:
 	Paddle* paddle; 
-	const float DEFAULT_HEIGHT = 50; 
-	const float EXTENDED_HEIGHT = 100; 
+	const float EXTENSION = 50;
 };

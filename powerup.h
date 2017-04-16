@@ -22,6 +22,7 @@ public:
 
 	virtual PowerupType getType() = 0;
 
+    bool isActivated();
 	bool finished = false;
 
 protected:

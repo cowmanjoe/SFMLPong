@@ -16,6 +16,20 @@ ball.h
 powerup.h
 /home/cowan/CLionProjects/SFMLPong/powerup.h
 
+/home/cowan/CLionProjects/SFMLPong/PowerupManager.cpp
+PowerupManager.h
+/home/cowan/CLionProjects/SFMLPong/PowerupManager.h
+addBallPowerup.h
+/home/cowan/CLionProjects/SFMLPong/addBallPowerup.h
+longPaddlePowerup.h
+/home/cowan/CLionProjects/SFMLPong/longPaddlePowerup.h
+ChangeBallSpeedPowerup.h
+/home/cowan/CLionProjects/SFMLPong/ChangeBallSpeedPowerup.h
+
+/home/cowan/CLionProjects/SFMLPong/PowerupManager.h
+game.h
+/home/cowan/CLionProjects/SFMLPong/game.h
+
 /home/cowan/CLionProjects/SFMLPong/addBallPowerup.cpp
 addBallPowerup.h
 /home/cowan/CLionProjects/SFMLPong/addBallPowerup.h
@@ -47,8 +61,6 @@ addBallPowerup.h
 /home/cowan/CLionProjects/SFMLPong/addBallPowerup.h
 ChangeBallSpeedPowerup.h
 /home/cowan/CLionProjects/SFMLPong/ChangeBallSpeedPowerup.h
-iostream
--
 
 /home/cowan/CLionProjects/SFMLPong/game.h
 SFML/Graphics.hpp
@@ -59,8 +71,12 @@ ball.h
 /home/cowan/CLionProjects/SFMLPong/ball.h
 powerup.h
 /home/cowan/CLionProjects/SFMLPong/powerup.h
+PowerupManager.h
+/home/cowan/CLionProjects/SFMLPong/PowerupManager.h
 
 /home/cowan/CLionProjects/SFMLPong/longPaddlePowerup.cpp
+iostream
+-
 longPaddlePowerup.h
 /home/cowan/CLionProjects/SFMLPong/longPaddlePowerup.h
 

@@ -94,6 +94,12 @@
 		<Unit filename="/home/cowan/CLionProjects/SFMLPong/ChangeBallSpeedPowerup.h">
 			<Option target="SFMLPong"/>
 		</Unit>
+		<Unit filename="/home/cowan/CLionProjects/SFMLPong/PowerupManager.cpp">
+			<Option target="SFMLPong"/>
+		</Unit>
+		<Unit filename="/home/cowan/CLionProjects/SFMLPong/PowerupManager.h">
+			<Option target="SFMLPong"/>
+		</Unit>
 		<Unit filename="/home/cowan/CLionProjects/SFMLPong/addBallPowerup.cpp">
 			<Option target="SFMLPong"/>
 		</Unit>

@@ -22,7 +22,7 @@ private:
 
 	const float WIDTH = 15.0f;
 	const float HEIGHT = 50.0f;
-	const float PADDLE_SPEED = 200.0f;
+	const float PADDLE_SPEED = 350.0f;
 
 	const float COLLISION_THRESHHOLD = 3.0f;
 
