@@ -8,6 +8,7 @@ class AddBallPowerup : public Powerup
 public:
     AddBallPowerup();
     void setGame(Game* game);
+    void setBall(Ball *ball);
     PowerupType getType();
 
 protected:
@@ -17,4 +18,5 @@ protected:
 private:
     Ball* ball;
     Game* game;
+
 };

@@ -177,6 +177,33 @@ PowerupManager.cpp.s:
 	$(MAKE) -f CMakeFiles/SFMLPong.dir/build.make CMakeFiles/SFMLPong.dir/PowerupManager.cpp.s
 .PHONY : PowerupManager.cpp.s
 
+ScoreManager.o: ScoreManager.cpp.o
+
+.PHONY : ScoreManager.o
+
+# target to build an object file
+ScoreManager.cpp.o:
+	$(MAKE) -f CMakeFiles/SFMLPong.dir/build.make CMakeFiles/SFMLPong.dir/ScoreManager.cpp.o
+.PHONY : ScoreManager.cpp.o
+
+ScoreManager.i: ScoreManager.cpp.i
+
+.PHONY : ScoreManager.i
+
+# target to preprocess a source file
+ScoreManager.cpp.i:
+	$(MAKE) -f CMakeFiles/SFMLPong.dir/build.make CMakeFiles/SFMLPong.dir/ScoreManager.cpp.i
+.PHONY : ScoreManager.cpp.i
+
+ScoreManager.s: ScoreManager.cpp.s
+
+.PHONY : ScoreManager.s
+
+# target to generate assembly for a file
+ScoreManager.cpp.s:
+	$(MAKE) -f CMakeFiles/SFMLPong.dir/build.make CMakeFiles/SFMLPong.dir/ScoreManager.cpp.s
+.PHONY : ScoreManager.cpp.s
+
 addBallPowerup.o: addBallPowerup.cpp.o
 
 .PHONY : addBallPowerup.o
@@ -381,6 +408,9 @@ help:
 	@echo "... PowerupManager.o"
 	@echo "... PowerupManager.i"
 	@echo "... PowerupManager.s"
+	@echo "... ScoreManager.o"
+	@echo "... ScoreManager.i"
+	@echo "... ScoreManager.s"
 	@echo "... addBallPowerup.o"
 	@echo "... addBallPowerup.i"
 	@echo "... addBallPowerup.s"

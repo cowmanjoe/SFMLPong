@@ -11,14 +11,19 @@ CMakeFiles/SFMLPong.dir/PowerupManager.cpp.o
  /home/cowan/CLionProjects/SFMLPong/ChangeBallSpeedPowerup.h
  /home/cowan/CLionProjects/SFMLPong/PowerupManager.cpp
  /home/cowan/CLionProjects/SFMLPong/PowerupManager.h
+ /home/cowan/CLionProjects/SFMLPong/ScoreManager.h
  /home/cowan/CLionProjects/SFMLPong/addBallPowerup.h
  /home/cowan/CLionProjects/SFMLPong/ball.h
  /home/cowan/CLionProjects/SFMLPong/game.h
  /home/cowan/CLionProjects/SFMLPong/longPaddlePowerup.h
  /home/cowan/CLionProjects/SFMLPong/paddle.h
  /home/cowan/CLionProjects/SFMLPong/powerup.h
+CMakeFiles/SFMLPong.dir/ScoreManager.cpp.o
+ /home/cowan/CLionProjects/SFMLPong/ScoreManager.cpp
+ /home/cowan/CLionProjects/SFMLPong/ScoreManager.h
 CMakeFiles/SFMLPong.dir/addBallPowerup.cpp.o
  /home/cowan/CLionProjects/SFMLPong/PowerupManager.h
+ /home/cowan/CLionProjects/SFMLPong/ScoreManager.h
  /home/cowan/CLionProjects/SFMLPong/addBallPowerup.cpp
  /home/cowan/CLionProjects/SFMLPong/addBallPowerup.h
  /home/cowan/CLionProjects/SFMLPong/ball.h
@@ -30,13 +35,11 @@ CMakeFiles/SFMLPong.dir/ball.cpp.o
  /home/cowan/CLionProjects/SFMLPong/ball.h
  /home/cowan/CLionProjects/SFMLPong/paddle.h
 CMakeFiles/SFMLPong.dir/game.cpp.o
- /home/cowan/CLionProjects/SFMLPong/ChangeBallSpeedPowerup.h
  /home/cowan/CLionProjects/SFMLPong/PowerupManager.h
- /home/cowan/CLionProjects/SFMLPong/addBallPowerup.h
+ /home/cowan/CLionProjects/SFMLPong/ScoreManager.h
  /home/cowan/CLionProjects/SFMLPong/ball.h
  /home/cowan/CLionProjects/SFMLPong/game.cpp
  /home/cowan/CLionProjects/SFMLPong/game.h
- /home/cowan/CLionProjects/SFMLPong/longPaddlePowerup.h
  /home/cowan/CLionProjects/SFMLPong/paddle.h
  /home/cowan/CLionProjects/SFMLPong/powerup.h
 CMakeFiles/SFMLPong.dir/longPaddlePowerup.cpp.o
@@ -46,6 +49,7 @@ CMakeFiles/SFMLPong.dir/longPaddlePowerup.cpp.o
  /home/cowan/CLionProjects/SFMLPong/powerup.h
 CMakeFiles/SFMLPong.dir/main.cpp.o
  /home/cowan/CLionProjects/SFMLPong/PowerupManager.h
+ /home/cowan/CLionProjects/SFMLPong/ScoreManager.h
  /home/cowan/CLionProjects/SFMLPong/ball.h
  /home/cowan/CLionProjects/SFMLPong/game.h
  /home/cowan/CLionProjects/SFMLPong/main.cpp
@@ -53,6 +57,7 @@ CMakeFiles/SFMLPong.dir/main.cpp.o
  /home/cowan/CLionProjects/SFMLPong/powerup.h
 CMakeFiles/SFMLPong.dir/paddle.cpp.o
  /home/cowan/CLionProjects/SFMLPong/PowerupManager.h
+ /home/cowan/CLionProjects/SFMLPong/ScoreManager.h
  /home/cowan/CLionProjects/SFMLPong/ball.h
  /home/cowan/CLionProjects/SFMLPong/game.h
  /home/cowan/CLionProjects/SFMLPong/paddle.cpp

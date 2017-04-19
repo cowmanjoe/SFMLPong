@@ -100,6 +100,12 @@
 		<Unit filename="/home/cowan/CLionProjects/SFMLPong/PowerupManager.h">
 			<Option target="SFMLPong"/>
 		</Unit>
+		<Unit filename="/home/cowan/CLionProjects/SFMLPong/ScoreManager.cpp">
+			<Option target="SFMLPong"/>
+		</Unit>
+		<Unit filename="/home/cowan/CLionProjects/SFMLPong/ScoreManager.h">
+			<Option target="SFMLPong"/>
+		</Unit>
 		<Unit filename="/home/cowan/CLionProjects/SFMLPong/addBallPowerup.cpp">
 			<Option target="SFMLPong"/>
 		</Unit>

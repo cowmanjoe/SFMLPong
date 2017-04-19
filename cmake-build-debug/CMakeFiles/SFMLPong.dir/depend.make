@@ -10,6 +10,7 @@ CMakeFiles/SFMLPong.dir/ChangeBallSpeedPowerup.cpp.o: ../powerup.h
 CMakeFiles/SFMLPong.dir/PowerupManager.cpp.o: ../ChangeBallSpeedPowerup.h
 CMakeFiles/SFMLPong.dir/PowerupManager.cpp.o: ../PowerupManager.cpp
 CMakeFiles/SFMLPong.dir/PowerupManager.cpp.o: ../PowerupManager.h
+CMakeFiles/SFMLPong.dir/PowerupManager.cpp.o: ../ScoreManager.h
 CMakeFiles/SFMLPong.dir/PowerupManager.cpp.o: ../addBallPowerup.h
 CMakeFiles/SFMLPong.dir/PowerupManager.cpp.o: ../ball.h
 CMakeFiles/SFMLPong.dir/PowerupManager.cpp.o: ../game.h
@@ -17,7 +18,11 @@ CMakeFiles/SFMLPong.dir/PowerupManager.cpp.o: ../longPaddlePowerup.h
 CMakeFiles/SFMLPong.dir/PowerupManager.cpp.o: ../paddle.h
 CMakeFiles/SFMLPong.dir/PowerupManager.cpp.o: ../powerup.h
 
+CMakeFiles/SFMLPong.dir/ScoreManager.cpp.o: ../ScoreManager.cpp
+CMakeFiles/SFMLPong.dir/ScoreManager.cpp.o: ../ScoreManager.h
+
 CMakeFiles/SFMLPong.dir/addBallPowerup.cpp.o: ../PowerupManager.h
+CMakeFiles/SFMLPong.dir/addBallPowerup.cpp.o: ../ScoreManager.h
 CMakeFiles/SFMLPong.dir/addBallPowerup.cpp.o: ../addBallPowerup.cpp
 CMakeFiles/SFMLPong.dir/addBallPowerup.cpp.o: ../addBallPowerup.h
 CMakeFiles/SFMLPong.dir/addBallPowerup.cpp.o: ../ball.h
@@ -29,13 +34,11 @@ CMakeFiles/SFMLPong.dir/ball.cpp.o: ../ball.cpp
 CMakeFiles/SFMLPong.dir/ball.cpp.o: ../ball.h
 CMakeFiles/SFMLPong.dir/ball.cpp.o: ../paddle.h
 
-CMakeFiles/SFMLPong.dir/game.cpp.o: ../ChangeBallSpeedPowerup.h
 CMakeFiles/SFMLPong.dir/game.cpp.o: ../PowerupManager.h
-CMakeFiles/SFMLPong.dir/game.cpp.o: ../addBallPowerup.h
+CMakeFiles/SFMLPong.dir/game.cpp.o: ../ScoreManager.h
 CMakeFiles/SFMLPong.dir/game.cpp.o: ../ball.h
 CMakeFiles/SFMLPong.dir/game.cpp.o: ../game.cpp
 CMakeFiles/SFMLPong.dir/game.cpp.o: ../game.h
-CMakeFiles/SFMLPong.dir/game.cpp.o: ../longPaddlePowerup.h
 CMakeFiles/SFMLPong.dir/game.cpp.o: ../paddle.h
 CMakeFiles/SFMLPong.dir/game.cpp.o: ../powerup.h
 
@@ -45,6 +48,7 @@ CMakeFiles/SFMLPong.dir/longPaddlePowerup.cpp.o: ../paddle.h
 CMakeFiles/SFMLPong.dir/longPaddlePowerup.cpp.o: ../powerup.h
 
 CMakeFiles/SFMLPong.dir/main.cpp.o: ../PowerupManager.h
+CMakeFiles/SFMLPong.dir/main.cpp.o: ../ScoreManager.h
 CMakeFiles/SFMLPong.dir/main.cpp.o: ../ball.h
 CMakeFiles/SFMLPong.dir/main.cpp.o: ../game.h
 CMakeFiles/SFMLPong.dir/main.cpp.o: ../main.cpp
@@ -52,6 +56,7 @@ CMakeFiles/SFMLPong.dir/main.cpp.o: ../paddle.h
 CMakeFiles/SFMLPong.dir/main.cpp.o: ../powerup.h
 
 CMakeFiles/SFMLPong.dir/paddle.cpp.o: ../PowerupManager.h
+CMakeFiles/SFMLPong.dir/paddle.cpp.o: ../ScoreManager.h
 CMakeFiles/SFMLPong.dir/paddle.cpp.o: ../ball.h
 CMakeFiles/SFMLPong.dir/paddle.cpp.o: ../game.h
 CMakeFiles/SFMLPong.dir/paddle.cpp.o: ../paddle.cpp

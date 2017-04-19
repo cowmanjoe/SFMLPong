@@ -4,6 +4,7 @@
 #include "ball.h"
 #include "powerup.h"
 #include "PowerupManager.h"
+#include "ScoreManager.h"
 
 class PowerupManager;
 
@@ -12,7 +13,7 @@ class Game
 public:
 	Game();
 
-    void addBall(Ball* ball);
+    Ball* dupBall(Ball *ball);
 	void removeBall(Ball* ball);
 
 	std::vector<Ball*> getBalls();
@@ -33,10 +34,10 @@ private:
 	
 
 	std::vector<Ball*> balls;
-	Paddle* leftPaddle;
-	Paddle* rightPaddle;
+	Paddle leftPaddle;
+	Paddle rightPaddle;
 
-    PowerupManager* powerupManager;
-	
+    PowerupManager powerupManager;
+	ScoreManager* scoreManager;
 
 };

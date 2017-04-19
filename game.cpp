@@ -1,7 +1,5 @@
 #include "game.h"
-#include "longPaddlePowerup.h"
-#include "addBallPowerup.h"
-#include "ChangeBallSpeedPowerup.h"
+#include "ScoreManager.h"
 
 using namespace sf;
 
@@ -14,13 +12,14 @@ Game::Game()
     gameLoop();
 }
 
-void Game::addBall(Ball* ball) {
-    Ball* firstBall = balls.front();
-    Vector2f firstVel = firstBall->getVelocity();
-    ball->setVelocity(-firstVel.x, firstVel.y);
-    ball->setPosition(firstBall->getPosition());
-    ball->setLastPaddleContact(firstBall->getLastPaddleContact());
-    balls.push_back(ball);
+Ball* Game::dupBall(Ball *ball) {
+    Vector2f vel = ball->getVelocity();
+    Ball* newBall = new Ball();
+    newBall->setVelocity(-vel.x, vel.y);
+    newBall->setPosition(ball->getPosition());
+    newBall->setLastPaddleContact(ball->getLastPaddleContact());
+    balls.push_back(newBall);
+    return newBall;
 }
 
 void Game::removeBall(Ball* ball) {
@@ -36,18 +35,15 @@ void Game::initialize() {
     Game::WINDOW_WIDTH = window->getSize().x;
     Game::WINDOW_HEIGHT = window->getSize().y;
 
-    powerupManager = new PowerupManager();
 
-    leftPaddle = new Paddle();
-    leftPaddle->setPosition(PADDLE_OFFSET, Game::WINDOW_HEIGHT / 2 - leftPaddle->getSize().y / 2);
+    leftPaddle.setPosition(PADDLE_OFFSET, Game::WINDOW_HEIGHT / 2 - leftPaddle.getSize().y / 2);
 
-    rightPaddle = new Paddle();
-    rightPaddle->setPosition(Game::WINDOW_WIDTH - PADDLE_OFFSET - rightPaddle->getSize().x, Game::WINDOW_HEIGHT / 2 - rightPaddle->getSize().y / 2);
+    rightPaddle.setPosition(Game::WINDOW_WIDTH - PADDLE_OFFSET - rightPaddle.getSize().x, Game::WINDOW_HEIGHT / 2 - rightPaddle.getSize().y / 2);
 
     Ball* ball = new Ball();
     ball->setPosition(Game::WINDOW_WIDTH / 2 - ball->getRadius(), Game::WINDOW_HEIGHT / 2 - ball->getRadius());
     ball->setVelocity(120, 120);
-    ball->setLastPaddleContact(leftPaddle);
+    ball->setLastPaddleContact(&leftPaddle);
     balls.push_back(ball);
 }
 
@@ -84,9 +80,10 @@ void Game::draw() {
     }
 
     powerupManager->drawPowerups(window);
+    scoreManager->draw(window);
 
-    window->draw(*leftPaddle);
-    window->draw(*rightPaddle);
+    window->draw(leftPaddle);
+    window->draw(rightPaddle);
     window->display();
 
 }
@@ -94,21 +91,21 @@ void Game::draw() {
 void Game::updatePaddles(Time elapsed)
 {
     if (Keyboard::isKeyPressed(Keyboard::W)) {
-        leftPaddle->moveUp(elapsed);
+        leftPaddle.moveUp(elapsed);
     }
     else if (Keyboard::isKeyPressed(Keyboard::S)) {
-        leftPaddle->moveDown(elapsed);
+        leftPaddle.moveDown(elapsed);
     }
 
     if (Keyboard::isKeyPressed(Keyboard::Up)) {
-        rightPaddle->moveUp(elapsed);
+        rightPaddle.moveUp(elapsed);
     }
     else if (Keyboard::isKeyPressed(Keyboard::Down)) {
-        rightPaddle->moveDown(elapsed);
+        rightPaddle.moveDown(elapsed);
     }
 
-    leftPaddle->update(elapsed);
-    rightPaddle->update(elapsed);
+    leftPaddle.update(elapsed);
+    rightPaddle.update(elapsed);
 }
 
 float sqrtWithAny(float x) {
@@ -134,25 +131,25 @@ void Game::updateBalls(Time elapsed)
             ball->setVelocity(vel.x, -vel.y);
         }
 
-        Vector2f leftPos = leftPaddle->getPosition();
-        Vector2f rightPos = rightPaddle->getPosition();
+        Vector2f leftPos = leftPaddle.getPosition();
+        Vector2f rightPos = rightPaddle.getPosition();
 
-        Vector2f leftSize = leftPaddle->getSize();
-        Vector2f rightSize = rightPaddle->getSize();
+        Vector2f leftSize = leftPaddle.getSize();
+        Vector2f rightSize = rightPaddle.getSize();
 
         FloatRect ballRect = FloatRect(pos, Vector2f(radius * 2, radius * 2));
 
-        if (leftPaddle->collidingRight(ballRect)) {
-            float offsetY = leftPaddle->getOffsetY(ballRect);
+        if (leftPaddle.collidingRight(ballRect)) {
+            float offsetY = leftPaddle.getOffsetY(ballRect);
             ball->setPosition(leftPos.x + leftSize.x, pos.y);
             ball->setVelocity(abs(vel.x), vel.y + abs(offsetY) * offsetY * Y_BOUNCE_FACTOR);
-            ball->setLastPaddleContact(leftPaddle);
+            ball->setLastPaddleContact(&leftPaddle);
         }
-        else if (rightPaddle->collidingLeft(ballRect)) {
-            float offsetY = rightPaddle->getOffsetY(ballRect);
+        else if (rightPaddle.collidingLeft(ballRect)) {
+            float offsetY = rightPaddle.getOffsetY(ballRect);
             ball->setPosition(rightPos.x - rightSize.x, pos.y);
             ball->setVelocity(-abs(vel.x), vel.y + abs(offsetY) * offsetY * Y_BOUNCE_FACTOR);
-            ball->setLastPaddleContact(rightPaddle);
+            ball->setLastPaddleContact(&rightPaddle);
         }
 
 

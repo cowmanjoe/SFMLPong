@@ -113,6 +113,7 @@ void PowerupManager::activatePowerup(Powerup *p, Game *g, Ball *b) {
         case ADD_BALL: {
             AddBallPowerup *abp = (AddBallPowerup *) p;
             abp->setGame(g);
+            abp->setBall(b);
             break;
         }
         case CHANGE_BALL_SPEED: {

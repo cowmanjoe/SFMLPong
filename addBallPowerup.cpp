@@ -2,7 +2,6 @@
 
 AddBallPowerup::AddBallPowerup()
 {
-    ball = new Ball();
     activeTime = 5;
     timer = 0;
     activated = false;
@@ -16,10 +15,13 @@ void AddBallPowerup::setGame(Game* game) {
     this->game = game;
 }
 
+void AddBallPowerup::setBall(Ball* ball) {
+    this->ball = ball;
+}
 
 void AddBallPowerup::activateEffects()
 {
-    game->addBall(ball);
+    game->dupBall(ball);
 }
 
 
