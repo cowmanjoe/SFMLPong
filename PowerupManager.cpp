@@ -2,6 +2,7 @@
 // Created by cowan on 16/04/17.
 //
 
+#include <iostream>
 #include "PowerupManager.h"
 #include "addBallPowerup.h"
 #include "longPaddlePowerup.h"
@@ -97,9 +98,8 @@ void PowerupManager::update(Time elapsed, Game* game) {
                 activatePowerup(p, game, b);
             }
         }
-
+        std::cout << p << "\n";
         p->update(elapsed);
-
     }
 }
 
@@ -130,3 +130,12 @@ void PowerupManager::activatePowerup(Powerup *p, Game *g, Ball *b) {
     p->activate();
 }
 
+void PowerupManager::clearPowerups() {
+    for (auto it = powerups.begin(); it != powerups.end(); it++) {
+        if ((*it)->isActivated())
+            (*it)->deactivate();
+        delete *it;
+    }
+    powerups.clear();
+
+}

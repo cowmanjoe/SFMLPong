@@ -1,15 +1,43 @@
 #include "game.h"
-#include "ScoreManager.h"
 
 using namespace sf;
 
 int Game::WINDOW_WIDTH;
 int Game::WINDOW_HEIGHT;
 
+bool leftWon = false;
+bool rightWon = false;
+
 Game::Game()
 {
     initialize();
     gameLoop();
+}
+
+void Game::startNewRound(bool didLeftWin) {
+    powerupManager->clearPowerups();
+
+    for (auto it = balls.begin(); it != balls.end(); it++) {
+        delete *it;
+    }
+    balls.clear();
+
+
+    Ball* ball = new Ball();
+    ball->setPosition(Game::WINDOW_WIDTH / 2 - ball->getRadius(), Game::WINDOW_HEIGHT / 2 - ball->getRadius());
+    ball->setVelocity(120, 120);
+    ball->setLastPaddleContact(&leftPaddle);
+    balls.push_back(ball);
+
+    if (didLeftWin) {
+        scoreManager->addLeftScore(1);
+    }
+    else{
+        scoreManager->addRightScore(1);
+    }
+
+    leftWon = false;
+    rightWon = false;
 }
 
 Ball* Game::dupBall(Ball *ball) {
@@ -35,6 +63,8 @@ void Game::initialize() {
     Game::WINDOW_WIDTH = window->getSize().x;
     Game::WINDOW_HEIGHT = window->getSize().y;
 
+    powerupManager = new PowerupManager();
+    scoreManager = new ScoreManager(WINDOW_WIDTH / 2);
 
     leftPaddle.setPosition(PADDLE_OFFSET, Game::WINDOW_HEIGHT / 2 - leftPaddle.getSize().y / 2);
 
@@ -68,6 +98,13 @@ void Game::gameLoop()
         powerupManager->update(elapsed, this);
 
         draw();
+
+        if (leftWon) {
+            startNewRound(true);
+        }
+        else if (rightWon) {
+            startNewRound(false);
+        }
     }
 
 }
@@ -153,10 +190,12 @@ void Game::updateBalls(Time elapsed)
         }
 
 
-        if (pos.x < 0 || pos.x > Game::WINDOW_WIDTH - radius * 2)
+        if (pos.x < 0 )
         {
-            window->close();
+            rightWon = true;
         }
+        else if (pos.x > Game::WINDOW_WIDTH - radius * 2)
+            leftWon = true;
     }
 }
 

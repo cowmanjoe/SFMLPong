@@ -3,8 +3,8 @@
 #include "paddle.h"
 #include "ball.h"
 #include "powerup.h"
-#include "PowerupManager.h"
 #include "ScoreManager.h"
+#include "PowerupManager.h"
 
 class PowerupManager;
 
@@ -37,7 +37,10 @@ private:
 	Paddle leftPaddle;
 	Paddle rightPaddle;
 
-    PowerupManager powerupManager;
+    PowerupManager* powerupManager;
 	ScoreManager* scoreManager;
 
+	void startNewRound();
+
+	void startNewRound(bool didLeftWin);
 };

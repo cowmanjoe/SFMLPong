@@ -6,7 +6,11 @@
 #define SFMLPONG_POWERUPMANAGER_H
 
 
-#include "game.h"
+//#include "game.h"
+
+#include <SFML/System/Time.hpp>
+#include "powerup.h"
+#include "ball.h"
 
 class Game;
 
@@ -18,7 +22,7 @@ public:
     std::vector<Powerup*> getPowerups();
     void drawPowerups(sf::RenderWindow* window);
     void activatePowerup(Powerup *p, Game *g, Ball *b);
-
+    void clearPowerups();
 private:
     std::vector<Powerup*> powerups;
     void maybeGeneratePowerup(int odds, Game* game);

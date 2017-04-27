@@ -22,7 +22,9 @@ void Powerup::activate()
 
 void Powerup::deactivate()
 {
-	deactivateEffects(); 
+	if (activated) {
+		deactivateEffects();
+	}
 	finished = true; 
 }
 
