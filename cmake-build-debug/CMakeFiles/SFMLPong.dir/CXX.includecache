@@ -71,6 +71,8 @@ paddle.h
 /home/cowan/CLionProjects/SFMLPong/paddle.h
 
 /home/cowan/CLionProjects/SFMLPong/game.cpp
+iostream
+-
 game.h
 /home/cowan/CLionProjects/SFMLPong/game.h
 

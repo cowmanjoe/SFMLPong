@@ -1,3 +1,4 @@
+#include <iostream>
 #include "game.h"
 
 using namespace sf;
@@ -7,6 +8,8 @@ int Game::WINDOW_HEIGHT;
 
 bool leftWon = false;
 bool rightWon = false;
+
+float reflectYAxis(float angle);
 
 Game::Game()
 {
@@ -25,15 +28,19 @@ void Game::startNewRound(bool didLeftWin) {
 
     Ball* ball = new Ball();
     ball->setPosition(Game::WINDOW_WIDTH / 2 - ball->getRadius(), Game::WINDOW_HEIGHT / 2 - ball->getRadius());
-    ball->setVelocity(120, 120);
+    ball->setVelocity(170);
     ball->setLastPaddleContact(&leftPaddle);
     balls.push_back(ball);
 
+
+
     if (didLeftWin) {
         scoreManager->addLeftScore(1);
+        ball->setMovementAngle(3 * M_PI / 4);
     }
     else{
         scoreManager->addRightScore(1);
+        ball->setMovementAngle(M_PI / 4);
     }
 
     leftWon = false;
@@ -41,9 +48,9 @@ void Game::startNewRound(bool didLeftWin) {
 }
 
 Ball* Game::dupBall(Ball *ball) {
-    Vector2f vel = ball->getVelocity();
     Ball* newBall = new Ball();
-    newBall->setVelocity(-vel.x, vel.y);
+    newBall->setVelocity(ball->getVelocity());
+    newBall->setMovementAngle(reflectYAxis(ball->getMovementAngle()));
     newBall->setPosition(ball->getPosition());
     newBall->setLastPaddleContact(ball->getLastPaddleContact());
     balls.push_back(newBall);
@@ -72,7 +79,8 @@ void Game::initialize() {
 
     Ball* ball = new Ball();
     ball->setPosition(Game::WINDOW_WIDTH / 2 - ball->getRadius(), Game::WINDOW_HEIGHT / 2 - ball->getRadius());
-    ball->setVelocity(120, 120);
+    ball->setVelocity(170);
+    ball->setMovementAngle(M_PI / 4);
     ball->setLastPaddleContact(&leftPaddle);
     balls.push_back(ball);
 }
@@ -152,6 +160,32 @@ float sqrtWithAny(float x) {
     return sqrt(x);
 }
 
+float reflectYAxis(float angle) {
+    float x = cosf(angle);
+    float y = sinf(angle);
+
+    if (x < 0) {
+        return atanf(y / -x);
+    }
+    else {
+        return atanf(y / -x) + M_PI;
+    }
+}
+
+
+float ballBounceOffset(float angle, float offset) {
+    float x = cosf(angle);
+    float y = sinf(angle);
+
+    if (x < 0) {
+        return atanf((y + 0.02 * offset) / x) - M_PI;
+    }
+    else {
+        return atanf((y + 0.02 * offset) / x);
+    }
+}
+
+
 void Game::updateBalls(Time elapsed)
 {
     for (auto it = balls.begin(); it != balls.end(); it++) {
@@ -159,14 +193,19 @@ void Game::updateBalls(Time elapsed)
 
         ball->update(elapsed);
         Vector2f pos = ball->getPosition();
-        Vector2f vel = ball->getVelocity();
 
         float radius = ball->getRadius();
 
-        if (pos.y <= 0 || pos.y >= Game::WINDOW_HEIGHT - radius * 2)
+        if (pos.y < 0)
         {
-            ball->setVelocity(vel.x, -vel.y);
+            ball->setMovementAngle(-ball->getMovementAngle());
+            ball->setPosition(pos.x, 0);
         }
+        else if (pos.y > Game::WINDOW_HEIGHT - radius * 2) {
+            ball->setMovementAngle(-ball->getMovementAngle());
+            ball->setPosition(pos.x, Game::WINDOW_HEIGHT - radius * 2);
+        }
+
 
         Vector2f leftPos = leftPaddle.getPosition();
         Vector2f rightPos = rightPaddle.getPosition();
@@ -179,13 +218,15 @@ void Game::updateBalls(Time elapsed)
         if (leftPaddle.collidingRight(ballRect)) {
             float offsetY = leftPaddle.getOffsetY(ballRect);
             ball->setPosition(leftPos.x + leftSize.x, pos.y);
-            ball->setVelocity(abs(vel.x), vel.y + abs(offsetY) * offsetY * Y_BOUNCE_FACTOR);
+            ball->setMovementAngle(reflectYAxis(ball->getMovementAngle()));
+            ball->setMovementAngle(ballBounceOffset(ball->getMovementAngle(), offsetY));
             ball->setLastPaddleContact(&leftPaddle);
         }
         else if (rightPaddle.collidingLeft(ballRect)) {
             float offsetY = rightPaddle.getOffsetY(ballRect);
             ball->setPosition(rightPos.x - rightSize.x, pos.y);
-            ball->setVelocity(-abs(vel.x), vel.y + abs(offsetY) * offsetY * Y_BOUNCE_FACTOR);
+            ball->setMovementAngle(reflectYAxis(ball->getMovementAngle()));
+            ball->setMovementAngle(ballBounceOffset(ball->getMovementAngle(), offsetY));
             ball->setLastPaddleContact(&rightPaddle);
         }
 

@@ -20,8 +20,7 @@ ChangeBallSpeedPowerup::ChangeBallSpeedPowerup(float speed) {
 void ChangeBallSpeedPowerup::activateEffects() {
     for(auto it = balls.begin(); it != balls.end(); it++) {
         Ball* b = *it;
-        Vector2f vel = b->getVelocity();
-        b->setVelocity(vel.x * speed, vel.y * speed);
+        b->setVelocity(b->getVelocity() * speed);
 
     }
 }
@@ -29,8 +28,7 @@ void ChangeBallSpeedPowerup::activateEffects() {
 void ChangeBallSpeedPowerup::deactivateEffects() {
     for(auto it = balls.begin(); it != balls.end(); it++) {
         Ball* b = *it;
-        Vector2f vel = b->getVelocity();
-        b->setVelocity(vel.x / speed, vel.y / speed);
+        b->setVelocity(b->getVelocity() / speed);
     }
 }
 

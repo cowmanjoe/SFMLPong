@@ -26,7 +26,7 @@ void PowerupManager::maybeGeneratePowerup(int odds, Game* game) {
         powerups.push_back(powerup);
         spawned = true;
     }
-    else if (r == 1) {
+    else if (r >= 10 && r < 15) {
         LongPaddlePowerup* longPaddlePowerup = new LongPaddlePowerup();
         powerup = longPaddlePowerup;
         powerups.push_back(powerup);

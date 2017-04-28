@@ -8,14 +8,17 @@ public:
 	Ball();
 	~Ball();
 
-	void setVelocity(float x, float y);
-	sf::Vector2f & getVelocity();
+	void setVelocity(float velocity);
+	float getVelocity();
+	void setMovementAngle(float angle);
+	float getMovementAngle();
 	void update(sf::Time elapsed);
 	Paddle* getLastPaddleContact();
 	void setLastPaddleContact(Paddle* paddle);
 
 private:
-	sf::Vector2f velocity;
+    float velocity;
+	float movementAngle;
 	const int radius = 5;
 	const sf::Color color = sf::Color::White;
 	Paddle* lastPaddleContact;
