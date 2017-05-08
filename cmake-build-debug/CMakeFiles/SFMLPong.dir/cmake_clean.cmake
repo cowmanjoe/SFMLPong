@@ -10,6 +10,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/SFMLPong.dir/PowerupManager.cpp.o"
   "CMakeFiles/SFMLPong.dir/ScoreManager.cpp.o"
   "CMakeFiles/SFMLPong.dir/KeyboardState.cpp.o"
+  "CMakeFiles/SFMLPong.dir/InputHandler.cpp.o"
   "SFMLPong.pdb"
   "SFMLPong"
 )

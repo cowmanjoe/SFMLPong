@@ -90,6 +90,12 @@
 		<Unit filename="/home/cowan/CLionProjects/SFMLPong/ChangeBallSpeedPowerup.h">
 			<Option target="SFMLPong"/>
 		</Unit>
+		<Unit filename="/home/cowan/CLionProjects/SFMLPong/InputHandler.cpp">
+			<Option target="SFMLPong"/>
+		</Unit>
+		<Unit filename="/home/cowan/CLionProjects/SFMLPong/InputHandler.h">
+			<Option target="SFMLPong"/>
+		</Unit>
 		<Unit filename="/home/cowan/CLionProjects/SFMLPong/KeyboardState.cpp">
 			<Option target="SFMLPong"/>
 		</Unit>

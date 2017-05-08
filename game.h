@@ -5,7 +5,7 @@
 #include "powerup.h"
 #include "ScoreManager.h"
 #include "PowerupManager.h"
-#include "KeyboardState.h"
+#include "InputHandler.h"
 
 class PowerupManager;
 
@@ -35,9 +35,7 @@ private:
 
 	bool paused;
 
-    KeyboardState currentKeyboardState;
-    KeyboardState previousKeyboardState;
-
+    InputHandler inputHandler;
 
 	std::vector<Ball*> balls;
 	Paddle leftPaddle;
@@ -45,8 +43,6 @@ private:
 
     PowerupManager* powerupManager;
 	ScoreManager* scoreManager;
-
-	void startNewRound();
 
 	void startNewRound(bool didLeftWin);
 };

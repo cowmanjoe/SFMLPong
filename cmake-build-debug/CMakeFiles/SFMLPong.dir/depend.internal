@@ -7,11 +7,16 @@ CMakeFiles/SFMLPong.dir/ChangeBallSpeedPowerup.cpp.o
  /home/cowan/CLionProjects/SFMLPong/ball.h
  /home/cowan/CLionProjects/SFMLPong/paddle.h
  /home/cowan/CLionProjects/SFMLPong/powerup.h
+CMakeFiles/SFMLPong.dir/InputHandler.cpp.o
+ /home/cowan/CLionProjects/SFMLPong/InputHandler.cpp
+ /home/cowan/CLionProjects/SFMLPong/InputHandler.h
+ /home/cowan/CLionProjects/SFMLPong/KeyboardState.h
 CMakeFiles/SFMLPong.dir/KeyboardState.cpp.o
  /home/cowan/CLionProjects/SFMLPong/KeyboardState.cpp
  /home/cowan/CLionProjects/SFMLPong/KeyboardState.h
 CMakeFiles/SFMLPong.dir/PowerupManager.cpp.o
  /home/cowan/CLionProjects/SFMLPong/ChangeBallSpeedPowerup.h
+ /home/cowan/CLionProjects/SFMLPong/InputHandler.h
  /home/cowan/CLionProjects/SFMLPong/KeyboardState.h
  /home/cowan/CLionProjects/SFMLPong/PowerupManager.cpp
  /home/cowan/CLionProjects/SFMLPong/PowerupManager.h
@@ -26,6 +31,7 @@ CMakeFiles/SFMLPong.dir/ScoreManager.cpp.o
  /home/cowan/CLionProjects/SFMLPong/ScoreManager.cpp
  /home/cowan/CLionProjects/SFMLPong/ScoreManager.h
 CMakeFiles/SFMLPong.dir/addBallPowerup.cpp.o
+ /home/cowan/CLionProjects/SFMLPong/InputHandler.h
  /home/cowan/CLionProjects/SFMLPong/KeyboardState.h
  /home/cowan/CLionProjects/SFMLPong/PowerupManager.h
  /home/cowan/CLionProjects/SFMLPong/ScoreManager.h
@@ -40,6 +46,7 @@ CMakeFiles/SFMLPong.dir/ball.cpp.o
  /home/cowan/CLionProjects/SFMLPong/ball.h
  /home/cowan/CLionProjects/SFMLPong/paddle.h
 CMakeFiles/SFMLPong.dir/game.cpp.o
+ /home/cowan/CLionProjects/SFMLPong/InputHandler.h
  /home/cowan/CLionProjects/SFMLPong/KeyboardState.h
  /home/cowan/CLionProjects/SFMLPong/PowerupManager.h
  /home/cowan/CLionProjects/SFMLPong/ScoreManager.h
@@ -54,6 +61,7 @@ CMakeFiles/SFMLPong.dir/longPaddlePowerup.cpp.o
  /home/cowan/CLionProjects/SFMLPong/paddle.h
  /home/cowan/CLionProjects/SFMLPong/powerup.h
 CMakeFiles/SFMLPong.dir/main.cpp.o
+ /home/cowan/CLionProjects/SFMLPong/InputHandler.h
  /home/cowan/CLionProjects/SFMLPong/KeyboardState.h
  /home/cowan/CLionProjects/SFMLPong/PowerupManager.h
  /home/cowan/CLionProjects/SFMLPong/ScoreManager.h
@@ -63,6 +71,7 @@ CMakeFiles/SFMLPong.dir/main.cpp.o
  /home/cowan/CLionProjects/SFMLPong/paddle.h
  /home/cowan/CLionProjects/SFMLPong/powerup.h
 CMakeFiles/SFMLPong.dir/paddle.cpp.o
+ /home/cowan/CLionProjects/SFMLPong/InputHandler.h
  /home/cowan/CLionProjects/SFMLPong/KeyboardState.h
  /home/cowan/CLionProjects/SFMLPong/PowerupManager.h
  /home/cowan/CLionProjects/SFMLPong/ScoreManager.h

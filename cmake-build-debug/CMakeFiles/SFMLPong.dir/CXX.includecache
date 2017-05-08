@@ -16,6 +16,16 @@ ball.h
 powerup.h
 /home/cowan/CLionProjects/SFMLPong/powerup.h
 
+/home/cowan/CLionProjects/SFMLPong/InputHandler.cpp
+algorithm
+-
+InputHandler.h
+/home/cowan/CLionProjects/SFMLPong/InputHandler.h
+
+/home/cowan/CLionProjects/SFMLPong/InputHandler.h
+KeyboardState.h
+/home/cowan/CLionProjects/SFMLPong/KeyboardState.h
+
 /home/cowan/CLionProjects/SFMLPong/KeyboardState.cpp
 algorithm
 -
@@ -87,6 +97,8 @@ iostream
 -
 game.h
 /home/cowan/CLionProjects/SFMLPong/game.h
+InputHandler.h
+/home/cowan/CLionProjects/SFMLPong/InputHandler.h
 
 /home/cowan/CLionProjects/SFMLPong/game.h
 SFML/Graphics.hpp
@@ -101,8 +113,8 @@ ScoreManager.h
 /home/cowan/CLionProjects/SFMLPong/ScoreManager.h
 PowerupManager.h
 /home/cowan/CLionProjects/SFMLPong/PowerupManager.h
-KeyboardState.h
-/home/cowan/CLionProjects/SFMLPong/KeyboardState.h
+InputHandler.h
+/home/cowan/CLionProjects/SFMLPong/InputHandler.h
 
 /home/cowan/CLionProjects/SFMLPong/longPaddlePowerup.cpp
 iostream

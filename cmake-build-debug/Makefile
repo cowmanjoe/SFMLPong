@@ -150,6 +150,33 @@ ChangeBallSpeedPowerup.cpp.s:
 	$(MAKE) -f CMakeFiles/SFMLPong.dir/build.make CMakeFiles/SFMLPong.dir/ChangeBallSpeedPowerup.cpp.s
 .PHONY : ChangeBallSpeedPowerup.cpp.s
 
+InputHandler.o: InputHandler.cpp.o
+
+.PHONY : InputHandler.o
+
+# target to build an object file
+InputHandler.cpp.o:
+	$(MAKE) -f CMakeFiles/SFMLPong.dir/build.make CMakeFiles/SFMLPong.dir/InputHandler.cpp.o
+.PHONY : InputHandler.cpp.o
+
+InputHandler.i: InputHandler.cpp.i
+
+.PHONY : InputHandler.i
+
+# target to preprocess a source file
+InputHandler.cpp.i:
+	$(MAKE) -f CMakeFiles/SFMLPong.dir/build.make CMakeFiles/SFMLPong.dir/InputHandler.cpp.i
+.PHONY : InputHandler.cpp.i
+
+InputHandler.s: InputHandler.cpp.s
+
+.PHONY : InputHandler.s
+
+# target to generate assembly for a file
+InputHandler.cpp.s:
+	$(MAKE) -f CMakeFiles/SFMLPong.dir/build.make CMakeFiles/SFMLPong.dir/InputHandler.cpp.s
+.PHONY : InputHandler.cpp.s
+
 KeyboardState.o: KeyboardState.cpp.o
 
 .PHONY : KeyboardState.o
@@ -432,6 +459,9 @@ help:
 	@echo "... ChangeBallSpeedPowerup.o"
 	@echo "... ChangeBallSpeedPowerup.i"
 	@echo "... ChangeBallSpeedPowerup.s"
+	@echo "... InputHandler.o"
+	@echo "... InputHandler.i"
+	@echo "... InputHandler.s"
 	@echo "... KeyboardState.o"
 	@echo "... KeyboardState.i"
 	@echo "... KeyboardState.s"

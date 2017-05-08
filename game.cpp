@@ -1,5 +1,6 @@
 #include <iostream>
 #include "game.h"
+#include "InputHandler.h"
 
 using namespace sf;
 
@@ -73,6 +74,12 @@ void Game::initialize() {
     powerupManager = new PowerupManager();
     scoreManager = new ScoreManager(WINDOW_WIDTH / 2);
 
+    inputHandler.watchKey(Keyboard::Space);
+    inputHandler.watchKey(Keyboard::W);
+    inputHandler.watchKey(Keyboard::S);
+    inputHandler.watchKey(Keyboard::Up);
+    inputHandler.watchKey(Keyboard::Down);
+
     leftPaddle.setPosition(PADDLE_OFFSET, Game::WINDOW_HEIGHT / 2 - leftPaddle.getSize().y / 2);
 
     rightPaddle.setPosition(Game::WINDOW_WIDTH - PADDLE_OFFSET - rightPaddle.getSize().x, Game::WINDOW_HEIGHT / 2 - rightPaddle.getSize().y / 2);
@@ -89,29 +96,14 @@ void Game::gameLoop()
 {
     Clock clock;
 
-    Keyboard::Key watchedKeys[] = {Keyboard::Space,
-                                   Keyboard::W,
-                                   Keyboard::S,
-                                   Keyboard::Up,
-                                   Keyboard::Down };
-
-    int watchedKeyCount = 5;
-
     while (window->isOpen())
     {
         Event event;
 
-        previousKeyboardState = currentKeyboardState;
-        currentKeyboardState.clearPressedKeys();
-
-        for (int i = 0; i < watchedKeyCount; i++) {
-            if (Keyboard::isKeyPressed(watchedKeys[i])) {
-                currentKeyboardState.addPressedKey(watchedKeys[i]);
-            }
-        }
+        inputHandler.update();
 
 
-        if (currentKeyboardState.isKeyPressed(Keyboard::Space) && !previousKeyboardState.isKeyPressed(Keyboard::Space)) {
+        if (inputHandler.isKeyJustPressed(Keyboard::Space)) {
             paused = !paused;
         }
 
@@ -162,17 +154,17 @@ void Game::draw() {
 
 void Game::updatePaddles(Time elapsed)
 {
-    if (currentKeyboardState.isKeyPressed(Keyboard::W)) {
+    if (inputHandler.isKeyPressed(Keyboard::W)) {
         leftPaddle.moveUp(elapsed);
     }
-    else if (currentKeyboardState.isKeyPressed(Keyboard::S)) {
+    else if (inputHandler.isKeyPressed(Keyboard::S)) {
         leftPaddle.moveDown(elapsed);
     }
 
-    if (currentKeyboardState.isKeyPressed(Keyboard::Up)) {
+    if (inputHandler.isKeyPressed(Keyboard::Up)) {
         rightPaddle.moveUp(elapsed);
     }
-    else if (currentKeyboardState.isKeyPressed(Keyboard::Down)) {
+    else if (inputHandler.isKeyPressed(Keyboard::Down)) {
         rightPaddle.moveDown(elapsed);
     }
 
