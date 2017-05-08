@@ -44,16 +44,14 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/include/c++/4.9"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/4.9"/>
-					<Add directory="/usr/include/c++/4.9/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.9/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.9/include-fixed"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -j4 -f &quot;/home/cowan/CLionProjects/SFMLPong/cmake-build-debug/Makefile&quot;  VERBOSE=1 SFMLPong"/>
@@ -69,16 +67,14 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/usr/include/c++/4.9"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/4.9"/>
-					<Add directory="/usr/include/c++/4.9/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.9/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/4.9/include-fixed"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -j4 -f &quot;/home/cowan/CLionProjects/SFMLPong/cmake-build-debug/Makefile&quot;  VERBOSE=1 SFMLPong/fast"/>
@@ -92,6 +88,12 @@
 			<Option target="SFMLPong"/>
 		</Unit>
 		<Unit filename="/home/cowan/CLionProjects/SFMLPong/ChangeBallSpeedPowerup.h">
+			<Option target="SFMLPong"/>
+		</Unit>
+		<Unit filename="/home/cowan/CLionProjects/SFMLPong/KeyboardState.cpp">
+			<Option target="SFMLPong"/>
+		</Unit>
+		<Unit filename="/home/cowan/CLionProjects/SFMLPong/KeyboardState.h">
 			<Option target="SFMLPong"/>
 		</Unit>
 		<Unit filename="/home/cowan/CLionProjects/SFMLPong/PowerupManager.cpp">

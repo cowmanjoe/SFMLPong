@@ -5,6 +5,7 @@
 #include "powerup.h"
 #include "ScoreManager.h"
 #include "PowerupManager.h"
+#include "KeyboardState.h"
 
 class PowerupManager;
 
@@ -31,7 +32,12 @@ private:
 	const float PADDLE_SPEED = 300;
 	const float Y_BOUNCE_FACTOR = 0.1f; 
 	sf::RenderWindow* window;
-	
+
+	bool paused;
+
+    KeyboardState currentKeyboardState;
+    KeyboardState previousKeyboardState;
+
 
 	std::vector<Ball*> balls;
 	Paddle leftPaddle;

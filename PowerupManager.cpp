@@ -98,7 +98,6 @@ void PowerupManager::update(Time elapsed, Game* game) {
                 activatePowerup(p, game, b);
             }
         }
-        std::cout << p << "\n";
         p->update(elapsed);
     }
 }

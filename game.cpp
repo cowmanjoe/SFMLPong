@@ -89,29 +89,56 @@ void Game::gameLoop()
 {
     Clock clock;
 
+    Keyboard::Key watchedKeys[] = {Keyboard::Space,
+                                   Keyboard::W,
+                                   Keyboard::S,
+                                   Keyboard::Up,
+                                   Keyboard::Down };
+
+    int watchedKeyCount = 5;
+
     while (window->isOpen())
     {
         Event event;
+
+        previousKeyboardState = currentKeyboardState;
+        currentKeyboardState.clearPressedKeys();
+
+        for (int i = 0; i < watchedKeyCount; i++) {
+            if (Keyboard::isKeyPressed(watchedKeys[i])) {
+                currentKeyboardState.addPressedKey(watchedKeys[i]);
+            }
+        }
+
+
+        if (currentKeyboardState.isKeyPressed(Keyboard::Space) && !previousKeyboardState.isKeyPressed(Keyboard::Space)) {
+            paused = !paused;
+        }
+
         while (window->pollEvent(event))
         {
             if (event.type == Event::Closed)
                 window->close();
         }
 
-        Time elapsed = clock.getElapsedTime();
-        clock.restart();
+        if (!paused) {
+            Time elapsed = clock.getElapsedTime();
+            clock.restart();
 
-        updatePaddles(elapsed);
-        updateBalls(elapsed);
-        powerupManager->update(elapsed, this);
+            updatePaddles(elapsed);
+            updateBalls(elapsed);
+            powerupManager->update(elapsed, this);
 
-        draw();
+            draw();
 
-        if (leftWon) {
-            startNewRound(true);
+            if (leftWon) {
+                startNewRound(true);
+            } else if (rightWon) {
+                startNewRound(false);
+            }
         }
-        else if (rightWon) {
-            startNewRound(false);
+        else {
+            clock.restart();
         }
     }
 
@@ -135,17 +162,17 @@ void Game::draw() {
 
 void Game::updatePaddles(Time elapsed)
 {
-    if (Keyboard::isKeyPressed(Keyboard::W)) {
+    if (currentKeyboardState.isKeyPressed(Keyboard::W)) {
         leftPaddle.moveUp(elapsed);
     }
-    else if (Keyboard::isKeyPressed(Keyboard::S)) {
+    else if (currentKeyboardState.isKeyPressed(Keyboard::S)) {
         leftPaddle.moveDown(elapsed);
     }
 
-    if (Keyboard::isKeyPressed(Keyboard::Up)) {
+    if (currentKeyboardState.isKeyPressed(Keyboard::Up)) {
         rightPaddle.moveUp(elapsed);
     }
-    else if (Keyboard::isKeyPressed(Keyboard::Down)) {
+    else if (currentKeyboardState.isKeyPressed(Keyboard::Down)) {
         rightPaddle.moveDown(elapsed);
     }
 

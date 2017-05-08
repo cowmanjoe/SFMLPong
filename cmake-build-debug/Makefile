@@ -39,10 +39,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/cowan/clion-2017.1/bin/cmake/bin/cmake
+CMAKE_COMMAND = /home/cowan/clion-2017.1.1/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /home/cowan/clion-2017.1/bin/cmake/bin/cmake -E remove -f
+RM = /home/cowan/clion-2017.1.1/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/cowan/CLionProjects/SFMLPong/cmake-build-debug
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/home/cowan/clion-2017.1/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/home/cowan/clion-2017.1.1/bin/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -70,7 +70,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/home/cowan/clion-2017.1/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	/home/cowan/clion-2017.1.1/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -149,6 +149,33 @@ ChangeBallSpeedPowerup.s: ChangeBallSpeedPowerup.cpp.s
 ChangeBallSpeedPowerup.cpp.s:
 	$(MAKE) -f CMakeFiles/SFMLPong.dir/build.make CMakeFiles/SFMLPong.dir/ChangeBallSpeedPowerup.cpp.s
 .PHONY : ChangeBallSpeedPowerup.cpp.s
+
+KeyboardState.o: KeyboardState.cpp.o
+
+.PHONY : KeyboardState.o
+
+# target to build an object file
+KeyboardState.cpp.o:
+	$(MAKE) -f CMakeFiles/SFMLPong.dir/build.make CMakeFiles/SFMLPong.dir/KeyboardState.cpp.o
+.PHONY : KeyboardState.cpp.o
+
+KeyboardState.i: KeyboardState.cpp.i
+
+.PHONY : KeyboardState.i
+
+# target to preprocess a source file
+KeyboardState.cpp.i:
+	$(MAKE) -f CMakeFiles/SFMLPong.dir/build.make CMakeFiles/SFMLPong.dir/KeyboardState.cpp.i
+.PHONY : KeyboardState.cpp.i
+
+KeyboardState.s: KeyboardState.cpp.s
+
+.PHONY : KeyboardState.s
+
+# target to generate assembly for a file
+KeyboardState.cpp.s:
+	$(MAKE) -f CMakeFiles/SFMLPong.dir/build.make CMakeFiles/SFMLPong.dir/KeyboardState.cpp.s
+.PHONY : KeyboardState.cpp.s
 
 PowerupManager.o: PowerupManager.cpp.o
 
@@ -405,6 +432,9 @@ help:
 	@echo "... ChangeBallSpeedPowerup.o"
 	@echo "... ChangeBallSpeedPowerup.i"
 	@echo "... ChangeBallSpeedPowerup.s"
+	@echo "... KeyboardState.o"
+	@echo "... KeyboardState.i"
+	@echo "... KeyboardState.s"
 	@echo "... PowerupManager.o"
 	@echo "... PowerupManager.i"
 	@echo "... PowerupManager.s"
